@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "": "lib/"
+            "Twig\\CacheExtension\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "": "test/"
+            "Twig\\CacheExtension\\Tests\\": "test/"
         }
     },
     "extra": {
