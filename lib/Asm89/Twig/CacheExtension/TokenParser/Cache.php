@@ -12,20 +12,22 @@
 namespace Asm89\Twig\CacheExtension\TokenParser;
 
 use Asm89\Twig\CacheExtension\Node\CacheNode;
+use Twig\Token;
+use Twig\TokenParser\AbstractTokenParser;
 
 /**
  * Parser for cache/endcache blocks.
  *
  * @author Alexander <iam.asm89@gmail.com>
  */
-class Cache extends \Twig_TokenParser
+class Cache extends AbstractTokenParser
 {
     /**
-     * @param \Twig_Token $token
+     * @param Token $token
      *
      * @return boolean
      */
-    public function decideCacheEnd(\Twig_Token $token)
+    public function decideCacheEnd(Token $token)
     {
         return $token->test('endcache');
     }
@@ -41,7 +43,7 @@ class Cache extends \Twig_TokenParser
     /**
      * {@inheritDoc}
      */
-    public function parse(\Twig_Token $token)
+    public function parse(Token $token)
     {
         $lineno = $token->getLine();
         $stream = $this->parser->getStream();
@@ -50,9 +52,9 @@ class Cache extends \Twig_TokenParser
 
         $key = $this->parser->getExpressionParser()->parseExpression();
 
-        $stream->expect(\Twig_Token::BLOCK_END_TYPE);
+        $stream->expect(Token::BLOCK_END_TYPE);
         $body = $this->parser->subparse(array($this, 'decideCacheEnd'), true);
-        $stream->expect(\Twig_Token::BLOCK_END_TYPE);
+        $stream->expect(Token::BLOCK_END_TYPE);
 
         return new CacheNode($annotation, $key, $body, $lineno, $this->getTag());
     }
