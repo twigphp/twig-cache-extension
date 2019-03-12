@@ -4,7 +4,7 @@ Twig cache extension
 The missing cache extension for Twig. The extension allows for caching rendered parts of
 templates using several cache strategies.
 
-[![Build Status](https://secure.travis-ci.org/asm89/twig-cache-extension.png?branch=master)](http://travis-ci.org/asm89/twig-cache-extension)
+[![Build Status](https://secure.travis-ci.org/twigphp/twig-cache-extension.png?branch=master)](http://travis-ci.org/twigphp/twig-cache-extension)
 
 ## Installation
 
@@ -13,7 +13,7 @@ The extension is installable via composer:
 ```json
 {
     "require": {
-        "asm89/twig-cache-extension": "~1.0"
+        "twig/cache-extension": "~1.0"
     }
 }
 ```
@@ -29,9 +29,9 @@ doctrine array cache is as following:
 <?php
 
 use Doctrine\Common\Cache\ArrayCache;
-use Asm89\Twig\CacheExtension\CacheProvider\DoctrineCacheAdapter;
-use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
-use Asm89\Twig\CacheExtension\Extension as CacheExtension;
+use Twig\CacheExtension\CacheProvider\DoctrineCacheAdapter;
+use Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
+use Twig\CacheExtension\Extension as CacheExtension;
 
 $cacheProvider  = new DoctrineCacheAdapter(new ArrayCache());
 $cacheStrategy  = new LifetimeCacheStrategy($cacheProvider);
@@ -55,9 +55,9 @@ composer require cache/apcu-adapter
 ```php
 <?php
 
-use Asm89\Twig\CacheExtension\CacheProvider\PsrCacheAdapter;
-use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
-use Asm89\Twig\CacheExtension\Extension as CacheExtension;
+use Twig\CacheExtension\CacheProvider\PsrCacheAdapter;
+use Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
+use Twig\CacheExtension\Extension as CacheExtension;
 use Cache\Adapter\Apcu\ApcuCachePool;
 
 $cacheProvider  = new PsrCacheAdapter(new ApcuCachePool());
@@ -141,7 +141,7 @@ name, the id and the updated time of the object:
 ```php
 <?php
 
-use Asm89\Twig\CacheExtension\CacheStrategy\KeyGeneratorInterface;
+use Twig\CacheExtension\CacheStrategy\KeyGeneratorInterface;
 
 class MyKeyGenerator implements KeyGeneratorInterface
 {
@@ -158,8 +158,8 @@ Next the `GenerationalCacheStrategy` needs to be setup with the keygenerator.
 ```php
 <?php
 
-use Asm89\Twig\CacheExtension\CacheStrategy\GenerationalCacheStrategy;
-use Asm89\Twig\CacheExtension\Extension as CacheExtension;
+use Twig\CacheExtension\CacheStrategy\GenerationalCacheStrategy;
+use Twig\CacheExtension\Extension as CacheExtension;
 
 $keyGenerator   = new MyKeyGenerator();
 $cacheProvider  = /* see Quick start */;
@@ -192,8 +192,8 @@ $strategy` and delegates the caching to the appropriate strategy.
 ```php
 <?php
 
-use Asm89\Twig\CacheExtension\CacheStrategy\IndexedChainingCacheStrategy;
-use Asm89\Twig\CacheExtension\Extension as CacheExtension;
+use Twig\CacheExtension\CacheStrategy\IndexedChainingCacheStrategy;
+use Twig\CacheExtension\Extension as CacheExtension;
 
 $cacheStrategy  = new IndexedChainingCacheStrategy(array(
     'time' => $lifetimeCacheStrategy,
@@ -235,4 +235,4 @@ Alexander <iam.asm89@gmail.com>
 
 ## License
 
-twig-cache-extension is licensed under the MIT License - see the LICENSE file for details
+twig/cache-extension is licensed under the MIT License - see the LICENSE file for details

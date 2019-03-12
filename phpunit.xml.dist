@@ -13,7 +13,7 @@
 >
   <testsuites>
     <testsuite name="Twig Cache Extension Test Suite">
-      <directory>./test/Asm89/</directory>
+      <directory>./test/Twig/</directory>
     </testsuite>
   </testsuites>
 
