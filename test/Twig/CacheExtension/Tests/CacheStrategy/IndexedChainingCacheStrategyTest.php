@@ -75,6 +75,6 @@ class IndexedChainingCacheStrategyTest extends \PHPUnit_Framework_TestCase
 
     public function createCacheStrategyMock()
     {
-        return $this->getMock('Twig\CacheExtension\CacheStrategyInterface');
+        return $this->createMock('Twig\CacheExtension\CacheStrategyInterface');
     }
 }
