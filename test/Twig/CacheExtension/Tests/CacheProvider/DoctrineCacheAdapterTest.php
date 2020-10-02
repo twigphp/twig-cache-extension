@@ -41,6 +41,6 @@ class DoctrineCacheAdapterTest extends \PHPUnit_Framework_TestCase
 
     public function createCacheMock()
     {
-        return $this->createMock('Doctrine\Common\Cache\Cache');
+        return $this->getMockBuilder('Doctrine\Common\Cache\Cache')->getMock();
     }
 }

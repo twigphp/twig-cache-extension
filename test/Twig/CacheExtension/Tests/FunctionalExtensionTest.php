@@ -18,8 +18,8 @@ use Twig\CacheExtension\CacheStrategy\IndexedChainingCacheStrategy;
 use Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
 use Twig\CacheExtension\Extension;
 use Doctrine\Common\Cache\ArrayCache;
-use Twig_Loader_Filesystem;
-use Twig_Environment;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 class FunctionalExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -58,8 +58,8 @@ class FunctionalExtensionTest extends \PHPUnit_Framework_TestCase
 
     protected function createTwig($cacheStrategyName = null)
     {
-        $loader = new Twig_Loader_Filesystem(__DIR__ . '/fixtures/');
-        $twig = new Twig_Environment($loader);
+        $loader = new FilesystemLoader(__DIR__ . '/fixtures/');
+        $twig = new Environment($loader);
 
         $cacheExtension = new Extension($this->createCacheStrategy($cacheStrategyName));
 
@@ -131,7 +131,7 @@ class FunctionalExtensionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Twig_Error_Runtime
+     * @expectedException \Twig\Error\RuntimeError
      * @expectedExceptionMessage An exception has been thrown during the rendering of a template ("No strategy key found in value.")
      */
     public function testIndexedChainingStrategyNeedsKey()

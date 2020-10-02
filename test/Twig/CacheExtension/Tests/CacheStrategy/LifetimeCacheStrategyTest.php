@@ -63,6 +63,6 @@ class LifetimeCacheStrategyTest extends \PHPUnit_Framework_TestCase
 
     public function createCacheProviderMock()
     {
-        return $this->createMock('Twig\CacheExtension\CacheProviderInterface');
+        return $this->getMockBuilder('Twig\CacheExtension\CacheProviderInterface')->getMock();
     }
 }
